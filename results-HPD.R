@@ -30,19 +30,16 @@ credint(eggAO[, 9])
 mean(eggAO[, 10])
 sd(eggAO[, 10])
 credint(eggAO[, 10])
-## # b[(Intercept) Week:AO.2]
-## credint(eggAO[, 3])
-## # b[(Intercept) Week:AO.3]
-## credint(eggAO[, 4])
-## # b[(Intercept) Week:AO.4]
-## credint(eggAO[, 5])
-## # b[(Intercept) Week:AO.5]
-## credint(eggAO[, 6])
-## # b[(Intercept) Week:AO.6]
-## credint(eggAO[, 7])
-## # b[(Intercept) Week:AO.7]
-## credint(eggAO[, 8])
-
+## # Make table with random intercepts (added to mean intercept and untransformed)
+## rand.intcpt <- data.frame(Week = c("AO.2", "AO.3", "AO.4", "AO.5", "AO.6", "AO.7"),
+##                           Intercept = c(exp(mean(eggAO[, 1]) + mean(eggAO[, 3])),
+##                                         exp(mean(eggAO[, 1]) + mean(eggAO[, 4])),
+##                                         exp(mean(eggAO[, 1]) + mean(eggAO[, 5])),
+##                                         exp(mean(eggAO[, 1]) + mean(eggAO[, 6])),
+##                                         exp(mean(eggAO[, 1]) + mean(eggAO[, 7])),
+##                                         exp(mean(eggAO[, 1]) + mean(eggAO[, 8]))))
+## # Save table
+## write.csv(rand.intcpt, file = "Data/eggAO-rand.csv", row.names = FALSE)
 
 # Egg OA fit
 eggOA <- scan("Data/eggOAfit.csv")
@@ -64,19 +61,16 @@ credint(eggOA[, 9])
 mean(eggOA[, 10])
 sd(eggOA[, 10])
 credint(eggOA[, 10])
-## # b[(Intercept) Week:OA.2]
-## credint(eggOA[, 3])
-## # b[(Intercept) Week:OA.3]
-## credint(eggOA[, 4])
-## # b[(Intercept) Week:OA.4]
-## credint(eggOA[, 5])
-## # b[(Intercept) Week:OA.5]
-## credint(eggOA[, 6])
-## # b[(Intercept) Week:OA.6]
-## credint(eggOA[, 7])
-## # b[(Intercept) Week:OA.7]
-## credint(eggOA[, 8])
-
+## # Make table with random intercepts (added to mean intercept and untransformed)
+## rand.intcpt <- data.frame(Week = c("OA.2", "OA.3", "OA.4", "OA.5", "OA.6", "OA.7"),
+##                           Intercept = c(exp(mean(eggOA[, 1]) + mean(eggOA[, 3])),
+##                                         exp(mean(eggOA[, 1]) + mean(eggOA[, 4])),
+##                                         exp(mean(eggOA[, 1]) + mean(eggOA[, 5])),
+##                                         exp(mean(eggOA[, 1]) + mean(eggOA[, 6])),
+##                                         exp(mean(eggOA[, 1]) + mean(eggOA[, 7])),
+##                                         exp(mean(eggOA[, 1]) + mean(eggOA[, 8]))))
+## # Save table
+## write.csv(rand.intcpt, file = "Data/eggOA-rand.csv", row.names = FALSE)
 
 # Day 22 AO fit
 day22AO <- scan("Data/day22AOfit.csv")
@@ -94,18 +88,16 @@ credint(day22AO[, 2])
 mean(day22AO[, 9])
 sd(day22AO[, 9])
 credint(day22AO[, 9])
-## # b[(Intercept) Week:AO.2]
-## credint(day22AO[, 3])
-## # b[(Intercept) Week:AO.3]
-## credint(day22AO[, 4])
-## # b[(Intercept) Week:AO.4]
-## credint(day22AO[, 5])
-## # b[(Intercept) Week:AO.5]
-## credint(day22AO[, 6])
-## # b[(Intercept) Week:AO.6]
-## credint(day22AO[, 7])
-## # b[(Intercept) Week:AO.7]
-## credint(day22AO[, 8])
+## # Make table with random intercepts (added to mean intercept and untransformed)
+## rand.intcpt <- data.frame(Week = c("AO.2", "AO.3", "AO.4", "AO.5", "AO.6", "AO.7"),
+##                           Intercept = c(exp(mean(day22AO[, 1]) + mean(day22AO[, 3])),
+##                                         exp(mean(day22AO[, 1]) + mean(day22AO[, 4])),
+##                                         exp(mean(day22AO[, 1]) + mean(day22AO[, 5])),
+##                                         exp(mean(day22AO[, 1]) + mean(day22AO[, 6])),
+##                                         exp(mean(day22AO[, 1]) + mean(day22AO[, 7])),
+##                                         exp(mean(day22AO[, 1]) + mean(day22AO[, 8]))))
+## # Save table
+## write.csv(rand.intcpt, file = "Data/day22AO-rand.csv", row.names = FALSE)
 
 # Day 22 OA fit
 day22OA <- scan("Data/day22OAfit.csv")
@@ -123,18 +115,16 @@ credint(day22OA[, 2])
 mean(day22OA[, 9])
 sd(day22OA[, 9])
 credint(day22OA[, 9])
-## # b[(Intercept) Week:OA.2]
-## credint(day22OA[, 3])
-## # b[(Intercept) Week:OA.3]
-## credint(day22OA[, 4])
-## # b[(Intercept) Week:OA.4]
-## credint(day22OA[, 5])
-## # b[(Intercept) Week:OA.5]
-## credint(day22OA[, 6])
-## # b[(Intercept) Week:OA.6]
-## credint(day22OA[, 7])
-## # b[(Intercept) Week:OA.7]
-## credint(day22OA[, 8])
+## # Make table with random intercepts (added to mean intercept and untransformed)
+## rand.intcpt <- data.frame(Week = c("OA.2", "OA.3", "OA.4", "OA.5", "OA.6", "OA.7"),
+##                           Intercept = c(exp(mean(day22OA[, 1]) + mean(day22OA[, 3])),
+##                                         exp(mean(day22OA[, 1]) + mean(day22OA[, 4])),
+##                                         exp(mean(day22OA[, 1]) + mean(day22OA[, 5])),
+##                                         exp(mean(day22OA[, 1]) + mean(day22OA[, 6])),
+##                                         exp(mean(day22OA[, 1]) + mean(day22OA[, 7])),
+##                                         exp(mean(day22OA[, 1]) + mean(day22OA[, 8]))))
+## # Save table
+## write.csv(rand.intcpt, file = "Data/day22OA-rand.csv", row.names = FALSE)
 
 # Day 29 AO fit
 day29AO <- scan("Data/day29AOfit.csv")
@@ -152,18 +142,16 @@ credint(day29AO[, 2])
 mean(day29AO[, 9])
 sd(day29AO[, 9])
 credint(day29AO[, 9])
-## # b[(Intercept) Week:AO.2]
-## credint(day29AO[, 3])
-## # b[(Intercept) Week:AO.3]
-## credint(day29AO[, 4])
-## # b[(Intercept) Week:AO.4]
-## credint(day29AO[, 5])
-## # b[(Intercept) Week:AO.5]
-## credint(day29AO[, 6])
-## # b[(Intercept) Week:AO.6]
-## credint(day29AO[, 7])
-## # b[(Intercept) Week:AO.7]
-## credint(day29AO[, 8])
+## # Make table with random intercepts (added to mean intercept and untransformed)
+## rand.intcpt <- data.frame(Week = c("AO.2", "AO.3", "AO.4", "AO.5", "AO.6", "AO.7"),
+##                           Intercept = c(exp(mean(day29AO[, 1]) + mean(day29AO[, 3])),
+##                                         exp(mean(day29AO[, 1]) + mean(day29AO[, 4])),
+##                                         exp(mean(day29AO[, 1]) + mean(day29AO[, 5])),
+##                                         exp(mean(day29AO[, 1]) + mean(day29AO[, 6])),
+##                                         exp(mean(day29AO[, 1]) + mean(day29AO[, 7])),
+##                                         exp(mean(day29AO[, 1]) + mean(day29AO[, 8]))))
+## # Save table
+## write.csv(rand.intcpt, file = "Data/day29AO-rand.csv", row.names = FALSE)
 
 # Day 29 OA fit
 day29OA <- scan("Data/day29OAfit.csv")
@@ -181,17 +169,15 @@ credint(day29OA[, 2])
 mean(day29OA[, 9])
 sd(day29OA[, 9])
 credint(day29OA[, 9])
-## # b[(Intercept) Week:OA.2]
-## credint(day29OA[, 3])
-## # b[(Intercept) Week:OA.3]
-## credint(day29OA[, 4])
-## # b[(Intercept) Week:OA.4]
-## credint(day29OA[, 5])
-## # b[(Intercept) Week:OA.5]
-## credint(day29OA[, 6])
-## # b[(Intercept) Week:OA.6]
-## credint(day29OA[, 7])
-## # b[(Intercept) Week:OA.7]
-## credint(day29OA[, 8])
+## # Make table with random intercepts (added to mean intercept and untransformed)
+## rand.intcpt <- data.frame(Week = c("OA.2", "OA.3", "OA.4", "OA.5", "OA.6", "OA.7"),
+##                           Intercept = c(exp(mean(day29OA[, 1]) + mean(day29OA[, 3])),
+##                                         exp(mean(day29OA[, 1]) + mean(day29OA[, 4])),
+##                                         exp(mean(day29OA[, 1]) + mean(day29OA[, 5])),
+##                                         exp(mean(day29OA[, 1]) + mean(day29OA[, 6])),
+##                                         exp(mean(day29OA[, 1]) + mean(day29OA[, 7])),
+##                                         exp(mean(day29OA[, 1]) + mean(day29OA[, 8]))))
+## # Save table
+## write.csv(rand.intcpt, file = "Data/day29OA-rand.csv", row.names = FALSE)
 
 
