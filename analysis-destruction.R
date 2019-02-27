@@ -17,12 +17,12 @@ data <- data[-fewrows, ]
 data <- subset(data, Week %in% c("AO.2", "AO.3", "AO.4", "AO.5", "AO.6", "AO.7", "OA.2", "OA.3", "OA.4", "OA.5", "OA.6", "OA.7"))
 head(data)
 
-########### Day 29
-day22 <- subset(data, Day == 22 & Total <= 70)
+########### Day 22
+day22 <- subset(data, Day == 22 & Total < 70)
 
 ## AO Pupae vs Larvae
 ### Fixed effect: density + random intercept
-stan.fit1 <- stan_glmer(cbind(Pupae, Larvae) ~ Density + (1 | Week),
+stan.fit1 <- stan_glmer(cbind(Pupae, Total - Pupae) ~ Density + (1 | Week),
                         data = subset(day22, Type == "AO"),
                         family = binomial("logit"),
                         prior = normal(0, scale = 2.5),
@@ -37,7 +37,7 @@ write(as.matrix(stan.fit1), file = "Data/day22AO-fit.csv")
 
 ## OA Pupae vs Larvae
 ### Fixed effect: density + random intercept
-stan.fit2 <- stan_glmer(cbind(Pupae, Larvae) ~ Density + (1 | Week),
+stan.fit2 <- stan_glmer(cbind(Pupae, Total - Pupae) ~ Density + (1 | Week),
                         data = subset(day22, Type == "OA"),
                         family = binomial("logit"),
                         prior = normal(0, scale = 2.5),
@@ -60,11 +60,11 @@ write(prednd2, file = "Data/day22OA-predictions.csv")
 
 
 ########### Day 29
-day29 <- subset(data, Day == 29 & Total <= 70)
+day29 <- subset(data, Day == 29 & Total < 70)
 
 ## AO Pupae vs Adults
 ### Fixed effect: density + random intercept
-stan.fit3 <- stan_glmer(cbind(Adults, Pupae) ~ Density + (1 | Week),
+stan.fit3 <- stan_glmer(cbind(Adults, Total - Adults) ~ Density + (1 | Week),
                         data = subset(day29, Type == "AO"),
                         family = binomial("logit"),
                         prior = normal(0, scale = 2.5),
@@ -79,7 +79,7 @@ write(as.matrix(stan.fit3), file = "Data/day29AO-fit.csv")
 
 ## OA Pupae vs Larvae
 ### Fixed effect: density + random intercept
-stan.fit4 <- stan_glmer(cbind(Adults, Pupae) ~ Density + (1 | Week),
+stan.fit4 <- stan_glmer(cbind(Adults, Total - Adults) ~ Density + (1 | Week),
                         data = subset(day29, Type == "OA"),
                         family = binomial("logit"),
                         prior = normal(0, scale = 2.5),
