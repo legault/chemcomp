@@ -34,6 +34,10 @@ stan.fit1 <- stan_glmer(cbind(Pupae, Total - Pupae) ~ Density + (1 | Week),
 print(summary(stan.fit1), digits = 4)
 # Save results
 write(as.matrix(stan.fit1), file = "Data/day22AO-fit.csv")
+# Save posterior check
+pdf(file = "Diagnostics/day22AO-ppcheck.pdf")
+pp_check(stan.fit1)
+dev.off()
 
 ## OA Pupae vs Larvae
 ### Fixed effect: density + random intercept
@@ -49,6 +53,10 @@ stan.fit2 <- stan_glmer(cbind(Pupae, Total - Pupae) ~ Density + (1 | Week),
 print(summary(stan.fit2), digits = 4)
 # Save results
 write(as.matrix(stan.fit2), file = "Data/day22OA-fit.csv")
+# Save posterior check
+pdf(file = "Diagnostics/day22OA-ppcheck.pdf")
+pp_check(stan.fit2)
+dev.off()
 
 # Use models to predict
 ## Obtain posterior draws of linear predictor removing the stock id random effect
@@ -76,6 +84,10 @@ stan.fit3 <- stan_glmer(cbind(Adults, Total - Adults) ~ Density + (1 | Week),
 print(summary(stan.fit3), digits = 4)
 # Save results
 write(as.matrix(stan.fit3), file = "Data/day29AO-fit.csv")
+# Save posterior check
+pdf(file = "Diagnostics/day29AO-ppcheck.pdf")
+pp_check(stan.fit3)
+dev.off()
 
 ## OA Pupae vs Larvae
 ### Fixed effect: density + random intercept
@@ -91,6 +103,10 @@ stan.fit4 <- stan_glmer(cbind(Adults, Total - Adults) ~ Density + (1 | Week),
 print(summary(stan.fit4), digits = 4)
 # Save results
 write(as.matrix(stan.fit4), file = "Data/day29OA-fit.csv")
+# Save posterior check
+pdf(file = "Diagnostics/day29OA-ppcheck.pdf")
+pp_check(stan.fit4)
+dev.off()
 
 # Use models to predict
 ## Obtain posterior draws of linear predictor removing the stock id random effect

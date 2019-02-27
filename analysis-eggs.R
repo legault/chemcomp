@@ -32,6 +32,10 @@ stan.fit1 <- stan_glmer(Count ~ Density + (1 | Week),
 print(summary(stan.fit1), digits = 4)
 # Save posterior samples
 write(as.matrix(stan.fit1), file = "Data/eggAO-fit.csv")
+# Save posterior check
+pdf(file = "Diagnostics/eggAO-ppcheck.pdf")
+pp_check(stan.fit1)
+dev.off()
 # Use model to predict
 ## Obtain posterior draws of linear predictor removing the stock id random effect
 prednd1 <- posterior_linpred(stan.fit1, re.form = ~0, transform = TRUE, newdata = data.frame(Density = c(0:150)))
@@ -54,6 +58,10 @@ stan.fit2 <- stan_glmer(Count ~ Density + (1 | Week),
 print(summary(stan.fit2), digits = 4)
 # Save posterior samples
 write(as.matrix(stan.fit2), file = "Data/eggOA-fit.csv")
+# Save posterior check
+pdf(file = "Diagnostics/eggOA-ppcheck.pdf")
+pp_check(stan.fit2)
+dev.off()
 # Use model to predict
 ## Obtain posterior draws of linear predictor removing the stock id random effect
 prednd2 <- posterior_linpred(stan.fit2, re.form = ~0, transform = TRUE, newdata = data.frame(Density = c(0:150)))
