@@ -33,9 +33,7 @@ stan.fit1 <- stan_glmer(cbind(Pupae, Larvae) ~ Density + (1 | Week),
                         cores = 4)
 print(summary(stan.fit1), digits = 4)
 # Save results
-write(as.matrix(stan.fit1), file = "Data/day22AOfit.csv")
-# Save random effects
-write.table(coef(stan.fit1)$Week, file = "Data/day22AO-rand.csv", col.names = FALSE, sep = ",")
+write(as.matrix(stan.fit1), file = "Data/day22AO-fit.csv")
 
 ## OA Pupae vs Larvae
 ### Fixed effect: density + random intercept
@@ -50,17 +48,15 @@ stan.fit2 <- stan_glmer(cbind(Pupae, Larvae) ~ Density + (1 | Week),
                         cores = 4)
 print(summary(stan.fit2), digits = 4)
 # Save results
-write(as.matrix(stan.fit2), file = "Data/day22OAfit.csv")
-# Save random effects
-write.table(coef(stan.fit2)$Week, file = "Data/day22OA-rand.csv", col.names = FALSE, sep = ",")
+write(as.matrix(stan.fit2), file = "Data/day22OA-fit.csv")
 
 # Use models to predict
 ## Obtain posterior draws of linear predictor removing the stock id random effect
-prednd1 <- posterior_linpred(stan.fit1, re.form = ~0, transform = TRUE)
-prednd2 <- posterior_linpred(stan.fit2, re.form = ~0, transform = TRUE)
+prednd1 <- posterior_linpred(stan.fit1, re.form = ~0, transform = TRUE, newdata = data.frame(Density = c(0:150)))
+prednd2 <- posterior_linpred(stan.fit2, re.form = ~0, transform = TRUE, newdata = data.frame(Density = c(0:150)))
 # Save predictions
-write(prednd1, file = "Data/day22AOpredictions.csv")
-write(prednd2, file = "Data/day22OApredictions.csv")
+write(prednd1, file = "Data/day22AO-predictions.csv")
+write(prednd2, file = "Data/day22OA-predictions.csv")
 
 
 ########### Day 29
@@ -79,9 +75,7 @@ stan.fit3 <- stan_glmer(cbind(Adults, Pupae) ~ Density + (1 | Week),
                         cores = 4)
 print(summary(stan.fit3), digits = 4)
 # Save results
-write(as.matrix(stan.fit3), file = "Data/day29AOfit.csv")
-# Save random effects
-write.table(coef(stan.fit3)$Week, file = "Data/day29AO-rand.csv", col.names = FALSE, sep = ",")
+write(as.matrix(stan.fit3), file = "Data/day29AO-fit.csv")
 
 ## OA Pupae vs Larvae
 ### Fixed effect: density + random intercept
@@ -96,14 +90,12 @@ stan.fit4 <- stan_glmer(cbind(Adults, Pupae) ~ Density + (1 | Week),
                         cores = 4)
 print(summary(stan.fit4), digits = 4)
 # Save results
-write(as.matrix(stan.fit4), file = "Data/day29OAfit.csv")
-# Save random effects
-write.table(coef(stan.fit3)$Week, file = "Data/day29OA-rand.csv", col.names = FALSE, sep = ",")
+write(as.matrix(stan.fit4), file = "Data/day29OA-fit.csv")
 
 # Use models to predict
 ## Obtain posterior draws of linear predictor removing the stock id random effect
-prednd3 <- posterior_linpred(stan.fit3, re.form = ~0, transform = TRUE)
-prednd4 <- posterior_linpred(stan.fit4, re.form = ~0, transform = TRUE)
+prednd3 <- posterior_linpred(stan.fit3, re.form = ~0, transform = TRUE, newdata = data.frame(Density = c(0:150)))
+prednd4 <- posterior_linpred(stan.fit4, re.form = ~0, transform = TRUE, newdata = data.frame(Density = c(0:150)))
 # Save predictions
-write(prednd3, file = "Data/day29AOpredictions.csv")
-write(prednd4, file = "Data/day29OApredictions.csv")
+write(prednd3, file = "Data/day29AO-predictions.csv")
+write(prednd4, file = "Data/day29OA-predictions.csv")

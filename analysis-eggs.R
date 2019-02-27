@@ -31,14 +31,12 @@ stan.fit1 <- stan_glmer(Count ~ Density + (1 | Week),
                         control = list(adapt_delta = 0.99))
 print(summary(stan.fit1), digits = 4)
 # Save posterior samples
-write(as.matrix(stan.fit1), file = "Data/eggAOfit.csv")
-# Save random effects
-write.table(coef(stan.fit1)$Week, file = "Data/eggAO-rand.csv", col.names = FALSE, sep = ",")
+write(as.matrix(stan.fit1), file = "Data/eggAO-fit.csv")
 # Use model to predict
 ## Obtain posterior draws of linear predictor removing the stock id random effect
-prednd1 <- posterior_linpred(stan.fit1, re.form = ~0, transform = TRUE)
+prednd1 <- posterior_linpred(stan.fit1, re.form = ~0, transform = TRUE, newdata = data.frame(Density = c(0:150)))
 ## Save predictions
-write(prednd1, file = "Data/eggAOpredictions.csv")
+write(prednd1, file = "Data/eggAO-predictions.csv")
 
 
 ## OA egg count
@@ -55,11 +53,9 @@ stan.fit2 <- stan_glmer(Count ~ Density + (1 | Week),
                         control = list(adapt_delta = 0.99))
 print(summary(stan.fit2), digits = 4)
 # Save posterior samples
-write(as.matrix(stan.fit2), file = "Data/eggOAfit.csv")
-# Save random effects
-write.table(coef(stan.fit2)$Week, file = "Data/eggOA-rand.csv", col.names = FALSE, sep = ",")
+write(as.matrix(stan.fit2), file = "Data/eggOA-fit.csv")
 # Use model to predict
 ## Obtain posterior draws of linear predictor removing the stock id random effect
-prednd2 <- posterior_linpred(stan.fit2, re.form = ~0, transform = TRUE)
+prednd2 <- posterior_linpred(stan.fit2, re.form = ~0, transform = TRUE, newdata = data.frame(Density = c(0:150)))
 ## Save predictions
-write(prednd2, file = "Data/eggOApredictions.csv")
+write(prednd2, file = "Data/eggOA-predictions.csv")
