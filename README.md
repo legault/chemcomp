@@ -1,4 +1,4 @@
-# Chemical competition between species of flour beetles
+# README - Chemical competition
 
 This repository contains R scripts associated with the paper:
 
